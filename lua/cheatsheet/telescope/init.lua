@@ -27,7 +27,7 @@ M.pick_cheat = function(telescope_opts, opts)
     finder = finders.new_table {
       results = cheatsheet.get_cheats(opts),
       entry_maker = function(entry)
-        local section_width = 10
+        local section_width = 15
 
         -- NOTE: the width calculating logic is not exact, but approx enough
         local displayer = entry_display.create {
@@ -43,7 +43,7 @@ M.pick_cheat = function(telescope_opts, opts)
         local function make_display(ent)
           return displayer {
             -- text, highlight group
-            { ent.value.section, "cheatMetadataSection" },
+            { ent.value.section,     "cheatMetadataSection" },
             { ent.value.description, "cheatDescription" },
           }
         end
@@ -61,6 +61,12 @@ M.pick_cheat = function(telescope_opts, opts)
           ),
         }
       end,
+    },
+    layout_strategy = "flex",
+    layout_config = {
+      flex = {
+
+      }
     },
     previewer = previewers.new({
       preview_fn = function(_, entry, status)
